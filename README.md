@@ -12,7 +12,7 @@ Various technologies will be used to make this possible; Express.js, mongoDB/mon
 
 ### The Operation
 
-Landmarks schema
+examples schema
 Users
 
 

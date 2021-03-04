@@ -134,6 +134,7 @@ router.delete('/sign-out', requireToken, (req, res, next) => {
   req.user.token = null
   // save the token and respond with 204
   req.user.save()
+    .then(() => res.send('Signed OUT!'))
     .then(() => res.sendStatus(204))
     .catch(next)
 })
