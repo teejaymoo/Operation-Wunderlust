@@ -1,7 +1,7 @@
 'use strict'
 
 // creating a base name for the mongodb
-const mongooseBaseName = 'operation-Wunderlust'
+const mongooseBaseName = 'wunderlust-API'
 
 // create the mongodb uri for development and test
 const database = {
