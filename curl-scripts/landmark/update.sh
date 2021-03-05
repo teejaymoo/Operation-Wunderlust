@@ -3,8 +3,8 @@
 curl "http://localhost:4741/landmarks/${ID}" \
   --include \
   --request PATCH \
-    --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
+  --header "Authorization: Bearer ${TOKEN}" \
   --data '{
     "landmark": {
       "name": "'"${NAME}"'",

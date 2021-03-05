@@ -44,6 +44,8 @@ router.post('/landmarks', requireToken, (req, res, next) => {
 
 router.get('/landmarks', requireToken, (req, res, next) => {
   // need to find all of my landmarks, so no need for id
+  console.log(req)
+  console.log(req.user._id)
   const userID = req.user._id
   Landmark.find({ owner: userID })
   // grabbing the all landmarks made and storing it in a array
@@ -51,9 +53,6 @@ router.get('/landmarks', requireToken, (req, res, next) => {
       return landmarks.map(landmark => landmark.toObject())
     })
     .then(landmarks => res.status(200).json({ landmarks }))
-    // displaying our user obejct and data
-  console.log('The user object:', req.user)
-  console.log('The incoming event data:', req.body)
     .catch(next)
 })
 
@@ -63,24 +62,18 @@ router.get('/landmarks/:id', requireToken, (req, res, next) => {
   Landmark.findById(req.params.id)
     .then(handle404)
     .then(landmark => res.status(200).json({ landmark: landmark.toObject() }))
-  console.log('The user object:', req.user)
-  console.log('The incoming event data:', req.body)
     .catch(next)
 })
 
-router.patch('/landmarks/:id', requireToken, removeBlanks, (res, req, next) => {
-  const landmarkData = req.body.landmark
-  delete landmarkData.owner
-
+router.patch('/landmarks/:id', requireToken, removeBlanks, (req, res, next) => {
+  delete req.body.landmark.owner
   Landmark.findById(req.params.id)
     .then(handle404)
     .then(landmark => {
-      requireOwnership(landmark, req.user)
-      return landmark.updateOne(landmarkData)
+      requireOwnership(req, landmark)
+      return landmark.updateOne(req.body.landmark)
     })
-  console.log('The user object:', req.user)
-  console.log('The incoming event data:', req.body)
-    .then(res.send(204))
+    .then(() => res.send(204))
     .catch(next)
 })
 
@@ -88,7 +81,7 @@ router.delete('/landmarks/:id', requireToken, (req, res, next) => {
   Landmark.findById(req.params.id)
     .then(handle404)
     .then(landmark => {
-      requireOwnership(landmark, req.user)
+      requireOwnership(req, landmark)
       landmark.deleteOne()
     })
     .then(() => res.sendStatus(204))
