@@ -1,6 +1,6 @@
 #!/bin/sh
 
-API="https://wunderlust-api-626.herokuapp.com"
+API="http://localhost:4741"
 URL_PATH="/landmarks"
 
 curl "${API}${URL_PATH}/${ID}" \

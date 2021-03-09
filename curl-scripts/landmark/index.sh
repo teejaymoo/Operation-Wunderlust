@@ -1,6 +1,6 @@
 #!/bin/sh
 
-curl "https://wunderlust-api-626.herokuapp.com/landmarks" \
+curl "http://localhost:4741/landmarks" \
   --include \
   --request GET \
   --header "Authorization: Bearer ${TOKEN}"

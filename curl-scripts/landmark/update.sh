@@ -1,6 +1,6 @@
 #!/bin/bash
 
-curl "https://wunderlust-api-626.herokuapp.com/${ID}" \
+curl "http://localhost:4741/landmarks/${ID}" \
   --include \
   --request PATCH \
   --header "Content-Type: application/json" \
