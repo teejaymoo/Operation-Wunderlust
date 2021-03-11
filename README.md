@@ -9,6 +9,14 @@ This API lets users communicate with the wunderlust database, allowing user to c
 
 Various technologies will be used to make this possible; Express.js, mongoDB/mongoose, Javascript and Node.js
 
+## Client-side link
+https://github.com/teejaymoo/Landmarker-client
+
+Landmarker-client repo is where the front-end lies.
+Landmarker allow users to communicate with wunderlust-API to CRUD (create-read-update-delete)
+their landmarks and their user accounts.
+
+
 
 ### Design/Blueprint
 
